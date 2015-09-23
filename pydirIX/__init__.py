@@ -12,4 +12,4 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-from pydirIX import dirIX
+from dirix import dirIX

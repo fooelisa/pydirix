@@ -17,15 +17,8 @@ Documentation
 Get IXP member lists:
 ```python
 >>> from pydirIX import dirIX
->>> members = dirIX(urls='...')
+>>> members = dirIX(url='https://www.ecix.net/memberlist_BER.json')
 >>> members.get()
-```
-
-### Get AS Numbers
-call asns():
-```python
->>> members.asns()
->>>
 ```
 
 License

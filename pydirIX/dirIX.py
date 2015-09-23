@@ -17,35 +17,15 @@ import urllib
 
 class dirIX:
 
-    def __init__(self, urls):
+    def __init__(self, url):
         """
-        Inits multiple Euro-IX IXP member lists in JSON format
-        :param urls:  dict of url's to the json schema source
+        Init Euro-IX IXP member lists in JSON format
+        :param url: url to the json schema source
         """
-        self.urls = urls
+        self.url = url
 
     def get(self):
-        for url in self.urls:
-            response = urllib.urlopen(url)
-            ixp_data = json.loads(response.read())
-
-    def asnum(self):
-        """
-        Gets AS Numbers.
-        """
-
-    def name(self):
-        """
-        Gets Network Names.
-        """
-
-    def ipv4(self):
-        """
-        Gets Network Names.
-        """
-
-    def ipv6(self):
-        """
-        Gets Network Names.
-        """
+        response = urllib.urlopen(self.url)
+        ixp_data = json.loads(response.read())
+        return ixp_data
 
