@@ -23,6 +23,8 @@ Import an IXP member list, given a source URL to the JSON schema
 
 ### List Member Data
 
+The list methords provide a way to access the member data and return lists of ASNs, IPs, etc.
+
 #### List imported data by Network Name
 ```python
 >>> members.list()
