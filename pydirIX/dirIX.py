@@ -29,6 +29,51 @@ class dirIX:
         Import the Euro-IX IXP member list
         """
         response = urllib.urlopen(self.url)
-        ixp_data = json.loads(response.read())
-        return ixp_data
+        data = json.loads(response.read())
+        self.data = data
 
+    def list(self):
+        """
+        List members at IXP
+        """
+        # init result dict
+        result = []
+        for member in self.data['member_list']:
+            result.append(member['name'])
+        return result
+
+    def list_asn(self):
+        """
+        List ASNs at IXP
+        """
+        # init result dict
+        result = []
+        for member in self.data['member_list']:
+            result.append(member['asnum'])
+        return result
+
+    def list_ip(self):
+        """
+        List IPs at IXP
+        """
+        # init result dict
+        result = []
+        for member in self.data['member_list']:
+            for connection in member['connection_list']:
+                 for vlan in connection['vlan_list']:
+                    if 'ipv4' in vlan:
+                        result.append(vlan['ipv4']['address'])
+        return result
+
+    def list_ipv6(self):
+        """
+        List IPs at IXP
+        """
+        # init result dict
+        result = []
+        for member in self.data['member_list']:
+            for connection in member['connection_list']:
+                 for vlan in connection['vlan_list']:
+                    if 'ipv6' in vlan:
+                        result.append(vlan['ipv6']['address'])
+        return result
