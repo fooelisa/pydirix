@@ -19,12 +19,15 @@ class dirIX:
 
     def __init__(self, url):
         """
-        Init Euro-IX IXP member lists in JSON format
+        Init Euro-IX IXP member list in JSON format
         :param url: url to the json schema source
         """
         self.url = url
 
     def get(self):
+        """
+        Import the Euro-IX IXP member list
+        """
         response = urllib.urlopen(self.url)
         ixp_data = json.loads(response.read())
         return ixp_data

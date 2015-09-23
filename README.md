@@ -13,8 +13,8 @@ pip install pydirix
 Documentation
 =============
 
-### Init Member Lists
-Get IXP member lists:
+### Import Member Lists
+Import an IXP member list, given a source URL to the JSON schema
 ```python
 >>> from pydirIX import dirIX
 >>> members = dirIX(url='https://www.ecix.net/memberlist_BER.json')
