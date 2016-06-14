@@ -15,6 +15,15 @@
 import json
 import urllib
 
+
+def _get_simple_items(dic):
+    result = {}
+    for k, v in dic.items():
+        if isinstance(v, list) or isinstance(v, dict): continue
+        result[k] = v
+    return result
+
+
 class dirIX:
 
     def __init__(self, url):
@@ -108,3 +117,27 @@ class dirIX:
         # return result dict
         return result
 
+    def _list_members_by_ip(self, ipv_str):
+        assert ipv_str == 'ipv4' or ipv_str == 'ipv6'
+        ip2data = {}
+        for member in self.data['member_list']:
+            member_data = _get_simple_items(member)
+            for connection in member['connection_list']:
+                 for vlan in connection['vlan_list']:
+                    if ipv_str not in vlan: continue
+                    vlan_data = _get_simple_items(vlan['ipv4'])
+                    vlan_data.update(member_data)
+                    ip2data[vlan[ipv_str]['address']] = vlan_data
+        return ip2data
+
+    def list_members_by_ipv4(self):
+        """
+        Show member data by IPv4 address
+        """
+        return self._list_members_by_ip('ipv4')
+
+    def list_members_by_ipv6(self):
+        """
+        Show member data by IPv6 address
+        """
+        return self._list_members_by_ip('ipv6')
