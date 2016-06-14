@@ -15,7 +15,6 @@
 import json
 import urllib
 
-
 def _get_simple_items(dic):
     result = {}
     for k, v in dic.items():
@@ -24,7 +23,7 @@ def _get_simple_items(dic):
     return result
 
 
-class dirIX:
+class dirIX(object):
 
     def __init__(self, url):
         """
@@ -32,6 +31,7 @@ class dirIX:
         :param url: url to the json schema source
         """
         self.url = url
+        self.data = {}
 
     def get(self):
         """
@@ -47,7 +47,7 @@ class dirIX:
         """
         # init result list
         result = []
-        # collect data 
+        # collect data
         for member in self.data['member_list']:
             result.append(member['name'])
         # return result list
@@ -59,7 +59,7 @@ class dirIX:
         """
         # init result list
         result = []
-        # collect data 
+        # collect data
         for member in self.data['member_list']:
             result.append(member['asnum'])
         # return result list
@@ -71,7 +71,7 @@ class dirIX:
         """
         # init result list
         result = []
-        # collect data 
+        # collect data
         for member in self.data['member_list']:
             for connection in member['connection_list']:
                  for vlan in connection['vlan_list']:
@@ -86,7 +86,7 @@ class dirIX:
         """
         # init result list
         result = []
-        # collect data 
+        # collect data
         for member in self.data['member_list']:
             for connection in member['connection_list']:
                  for vlan in connection['vlan_list']:
@@ -101,7 +101,7 @@ class dirIX:
         """
         # init result dict
         result = {}
-        # collect data 
+        # collect data
         for member in self.data['member_list']:
             asn = member['asnum']
             result[asn] = {}
